@@ -1,0 +1,219 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PossFD / HVAC 시장개발 리포트</title><style>
+:root{--ink:#1a2230;--muted:#6b7685;--line:#e4e8ee;--accent:#0b5cab;--bg:#f5f7fa;--chip:#eef2f7}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Malgun Gothic','Segoe UI',system-ui,sans-serif;line-height:1.55;font-size:14px}
+.page{max-width:980px;margin:24px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:34px 42px;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+h1{font-size:24px;margin:0 0 4px}
+.sub{color:var(--muted);font-size:12px;margin-bottom:16px}
+.warn{background:#fff7e6;border:1px solid #ffd591;color:#874d00;font-size:12px;padding:7px 12px;border-radius:7px;margin-bottom:20px}
+h2{font-size:16px;color:var(--accent);border-bottom:2px solid var(--line);padding-bottom:6px;margin:30px 0 12px}
+h3{font-size:14px;margin:16px 0 6px;color:#23344a}
+h4{font-size:13px;margin:12px 0 5px;color:#3a4452}
+.kpis{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.kpi{background:var(--chip);border-radius:8px;padding:8px 14px;font-size:13px}
+.kpi b{display:block;font-size:18px;color:var(--accent)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}
+.chip{background:var(--chip);border:1px solid var(--line);border-radius:20px;padding:2px 11px;font-size:12.5px}
+.appcard{border:1px solid var(--line);border-radius:9px;padding:10px 14px;margin:8px 0;background:#fafbfd}
+.appcard .h{font-weight:700;color:var(--accent)}.appcard .m{color:var(--muted);font-size:12.5px}
+.guide{background:#f4f8fc;border:1px solid #cfe0f0;border-radius:10px;padding:6px 20px 14px}
+.guide p{margin:8px 0}.guide ul{margin:6px 0 6px 2px;padding-left:20px}.guide li{margin:3px 0}
+.guide blockquote{margin:12px 0 2px;padding:8px 14px;border-left:3px solid var(--accent);background:#eaf2fb;color:#34506e;font-size:12.5px;border-radius:0 6px 6px 0}
+.guide h3{color:var(--accent)}
+.guidemiss{background:#fbfbfc;border:1px dashed var(--line);border-radius:10px;padding:14px 18px;color:var(--muted);font-size:13px}
+.guidenote{color:#8893a3;font-size:11.5px;margin:5px 2px 0}
+details{border:1px solid var(--line);border-radius:8px;margin:7px 0;background:#fff;overflow:hidden}
+details[open]{box-shadow:0 1px 3px rgba(0,0,0,.05)}
+summary{cursor:pointer;padding:8px 12px;list-style:none;display:flex;gap:9px;align-items:baseline;flex-wrap:wrap;background:#f8fafc}
+summary::-webkit-details-marker{display:none}
+.date{background:#eef2f7;border:1px solid var(--line);border-radius:6px;padding:1px 8px;font-size:12px;white-space:nowrap}
+.stage{background:#0b5cab;color:#fff;border-radius:6px;padding:1px 8px;font-size:11.5px}
+.who{color:var(--muted);font-size:12px}.ttl{font-size:13px}
+.hit{flex-basis:100%;margin-top:5px;font-size:12px;color:#1a4971;background:#eef5fb;border-left:3px solid #0b5cab;padding:4px 9px;border-radius:0 5px 5px 0}
+.cbody{padding:10px 14px 13px;font-size:13px;color:#283142;white-space:pre-wrap;border-top:1px solid var(--line)}
+.fup{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);color:#7a4d00;font-size:12.5px;white-space:pre-wrap}
+.custh{margin:14px 0 4px;font-size:13.5px;font-weight:700}
+.region{background:#1a9e6c;color:#fff;border-radius:6px;padding:1px 8px;font-size:11.5px;margin-left:6px;font-weight:400}
+.tail{color:var(--muted);font-size:11.5px}
+.empty{color:var(--muted);font-style:italic}
+.news{padding:9px 0;border-bottom:1px dashed var(--line)}
+.news:last-child{border-bottom:0}
+.news-top{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.imp{border-radius:6px;padding:1px 8px;font-size:11.5px;font-weight:600}
+.imp-h{background:#fde7e7;color:#b42318}.imp-m{background:#fff4e5;color:#9a6700}.imp-l{background:#eef2f7;color:#6b7685}
+.src{color:var(--muted);font-size:12px}
+.news-ttl{font-size:13px;font-weight:600}.news-ttl a{color:#0b5cab;text-decoration:none}
+.news-imp{color:#3a4452;font-size:12.5px;margin-top:4px}
+.stagebox{margin:10px 0 4px;border:1px solid var(--line);border-radius:9px;padding:8px 12px;background:#fafbfd}
+.stagebox-h{font-size:12px;color:var(--muted);font-weight:600;margin-bottom:5px}
+.stagerow{display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap}
+.stagecusts{font-size:11.5px;color:#3a4452}
+.custlink{color:#0b5cab;text-decoration:none;border-bottom:1px dotted #9cc3ef}
+.custlink:hover{background:#eef5fb}
+.ctrytag{background:#fff0e6;color:#9a4b00;border:1px solid #f3cba8;border-radius:6px;padding:1px 7px;font-size:11px;margin-left:6px}
+.custh:target{background:#fff7e0;outline:2px solid #ffd591;border-radius:6px;padding:3px 6px;scroll-margin-top:12px}
+.casebox{margin:6px 0 12px;border:1px solid var(--line);border-radius:9px;padding:8px 12px;background:#fafbfd}
+.casetbl{font-size:12.5px;margin:4px 0;border-collapse:collapse;width:100%}
+.casetbl th,.casetbl td{text-align:left;padding:4px 9px;border-bottom:1px solid var(--line)}.casetbl th{font-size:11.5px;color:var(--muted)}
+.casetbl td.ctd{font-weight:700;color:#9a4b00;background:#fff6ee;vertical-align:top}
+ol.fb{font-size:13px;padding-left:22px}ol.fb li{margin:12px 0}
+.fbline{border-bottom:1px solid var(--line);height:22px;margin-top:4px}
+.gradebox{border:1px solid #cfe0d8;background:#f4faf6;border-radius:10px;margin:8px 0;overflow:hidden}
+.gradesum{cursor:pointer;padding:9px 14px;font-weight:700;color:#1a7a52;background:#eaf6ef;font-size:13.5px;list-style:none}
+.gradesum::-webkit-details-marker{display:none}
+.gradebody{padding:4px 18px 14px;font-size:13px}
+.gradebody h3{color:#1a7a52;border:0;font-size:13.5px}.gradebody h4{color:#2a6b4e}
+.gradebody blockquote{margin:8px 0;padding:6px 12px;border-left:3px solid #1a9e6c;background:#eef7f1;color:#34634e;font-size:12px;border-radius:0 6px 6px 0}
+.gradetbl{border-collapse:collapse;width:100%;margin:8px 0;font-size:12.5px}
+.gradetbl th,.gradetbl td{border:1px solid #d6e3db;padding:4px 9px;text-align:left;vertical-align:top}
+.gradetbl th{background:#eaf6ef;color:#1a7a52;font-size:11.5px}
+.indbox{border:1px solid #c9d2ef;background:#f5f7fe;border-radius:10px;margin:8px 0;padding:6px 18px 14px;font-size:13px}
+.indbox h3{color:#3a4ea8;border:0;font-size:13.5px}.indbox h4{color:#4a56a0}
+.indbox blockquote{margin:8px 0;padding:6px 12px;border-left:3px solid #5566c4;background:#eef0fb;color:#3e4673;font-size:12px;border-radius:0 6px 6px 0}
+.indbox .gradetbl th{background:#eef0fb;color:#3a4ea8;border-color:#d4daf2}
+.indbox .gradetbl td{border-color:#d4daf2}
+.indconf{background:#fff8f0;border-color:#f0d8b8}
+.indagent{font-weight:400;font-size:12px;color:#5566c4;background:#eef0fb;border:1px solid #c9d2ef;border-radius:12px;padding:1px 9px;margin-left:8px}
+@media print{body{background:#fff}.page{border:0;box-shadow:none;margin:0;max-width:none}details{break-inside:avoid}}
+</style></head><body><div class="page"><h1>PossFD / HVAC — 시장개발 리포트</h1><div class="sub">로컬 생성 2026-05-29 · 출처 sts_deals.db · 본문=원문 / 단계=추출(미검증) · 외부 전송 없음</div><div class="warn">⚠ 시장개발 참고용. 본문은 메모 원문, 단계/거래값은 AI 규칙기반 추출(미검증). 미팅메모는 작성시점 기록으로 이후 진행상황은 반영되지 않습니다.</div><h2>① 개발 현황 한눈에</h2><div class="kpis"><div class="kpi">관련 메모<b>11</b>건</div><div class="kpi">고객<b>9</b>곳</div><div class="kpi">담당 그룹<b>1</b>개</div><div class="kpi">기간<b style="font-size:13px">2025-08-11 ~ 2026-05-11</b></div></div><div class="chips"><span class="chip">유럽미주 7건</span><span class="chip">사업실 4건</span></div><div class="stagebox"><div class="stagebox-h">도달 단계별 고객사 <span style="font-weight:400">(클릭 시 ④ 해당 고객으로 이동)</span></div><div class="stagerow"><span class="stage">검토</span> <span class="stagecusts"><a href="#c_02150b6d" class="custlink">에버테크코퍼레이션</a></span></div><div class="stagerow"><span class="stage">Trial</span> <span class="stagecusts"><a href="#c_55ea63a7" class="custlink">(주)대한스텐레스파이프</a> · <a href="#c_3a52243c" class="custlink">DAEHAN SPECIAL STEEL</a> · <a href="#c_f3128ece" class="custlink">INOXPRES SA</a> · <a href="#c_8af5e666" class="custlink">SAMUEL SON AND CO LIMITED</a></span></div><div class="stagerow"><span class="stage">계약</span> <span class="stagecusts"><a href="#c_3138a8af" class="custlink">NUNGWON METAL IND. CO., LTD.</a></span></div><div class="stagerow"><span class="stage">양산</span> <span class="stagecusts"><a href="#c_f3d8f4f6" class="custlink">Carrier Mexico</a> · <a href="#c_ebf45fbd" class="custlink">DAE HAN MEXICO S.A. DE C.V.</a> · <a href="#c_37a730a6" class="custlink">HANGZHOU WENGE TECHNOLOGY</a></span></div></div><h2>② 영업 가이드 (한 줄 진단)</h2><div class="guide"><h3>POSSFD 영업 가이드 (한 줄 진단)</h3>
+<p><b>POSSFD = 포스코 고연질(高延性) 페라이트계 STS.</b> 핵심 성장축은 <b>&quot;구리관 대체 — HVAC 냉매·열교환기&quot;</b>, 부차로 주방싱크(4301J1/304 대체)와 건설 냉매배관.</p>
+<h3>지역별 성숙도 — 횡단 참고의 핵심</h3>
+<ul>
+<li>🟢 <b>중국 (Wenge / 유럽미주·조재용) = 최선두.</b> 양산 공급 실증 완료, GB/T 45650-2025 <b>국가표준 채택</b>으로 구리관 대체 수요 폭발 전망(연 15만톤). &#x27;26년 1천톤 협의·독점권 논의 중. 단가 <b>U$4,000/톤(0.6T FOB)</b> 벤치마크.</li>
+<li>🟡 <b>멕시코 (Carrier / 대한멕시코 협업).</b> 구리관 대비 <b>40% 단가 우위</b>(PossFD U$3,500 vs 구리 U$11,000). 현지조관 SCM 구축 중, <b>&#x27;26 소재인증 → &#x27;27 양산</b> 로드맵. 미국 관세(50%) 회피가 추가 동인.</li>
+<li>🟡 <b>한국 (LGE·한신공영 / 김호준).</b> LGE 2016년부터 검증, <b>&#x27;26 최종 신뢰성검증 후 채택 임박.</b> LGE 채택 시 국내 건설사 즉시 확산 전망.</li>
+<li>🔵 <b>유럽 (Fischer·Inoxpres / 조재용).</b> 시장개발 초기 단계, 냉매 관련 norm 변경이 기회 요인.</li>
+</ul>
+<h3>리스크</h3>
+<ul>
+<li><b>BLANCO</b>: &quot;304 Company&quot; 이미지로 페라이트계 채택에 부정적.</li>
+<li><b>중국 로컬밀(TISCO·덕성보강)</b>: 고연질 STS 추격, 단기 선점 후 경쟁 심화 예상.</li>
+</ul>
+<h3>신규 추진 가이드</h3>
+<ul>
+<li><b>1순위 참고처 = 중국 Wenge(양산·국가표준·가격구조) + 멕시코 대한멕시코(현지조관 SCM 모델).</b></li>
+<li>두 사례의 인증 데이터·가격 구조를 신규 지역에 그대로 횡전개 가능.</li>
+<li>신규 지역 진입 메시지 3종: ① 구리관 대비 단가 우위 ② 현지 조관 파트너 확보 ③ 냉매 표준/규제 변화.</li>
+</ul>
+<blockquote>이 가이드는 분석가(또는 로컬/MI 승인 LLM)가 작성·검증한 해석 레이어입니다. 원문 근거는 아래 ④ 개발 스레드에서 확인하세요. 수정하려면 이 `가이드_POSSFD.md` 파일을 편집하면 리포트에 자동 반영됩니다.</blockquote></div><div class="guidenote">출처: 작성: 가이드_PossFD.md (사람 작성·검증됨)</div><h2>◆ 산업 브리핑 — HVAC<span class="indagent">🤖 산업 sub-agent</span></h2><div class="tail">사람이 다 추적할 수 없는 산업 종축(기술 트렌드·규제·플레이어·수요)을 AI가 전담하는 지식베이스 · AI 정리·미검증.</div><div class="indbox"><h3>HVAC(공조·냉매) 산업 — STS 브리핑</h3>
+<blockquote><b>산업 sub-agent 지식베이스.</b> 사람이 다 추적할 수 없는 산업 종축(기술 트렌드·규제·플레이어·수요)을 AI가 전담하는 자료.</blockquote>
+<blockquote>공개 산업지식 + 당사 내부 메모 근거로 정리. <b>AI 정리·미검증 — 사람 확인 후 활용.</b></blockquote>
+<h3>1. 산업 개요 · STS 적용 포인트</h3>
+<ul>
+<li>HVAC = 냉난방공조(Heating·Ventilation·Air Conditioning). STS 적용 3대 영역:</li>
+</ul>
+<p>  1. <b>냉매 배관(구리관 대체)</b> — 가장 큰 신규 기회 (PossFD)</p>
+<p>  2. <b>열교환기</b> — 증발기·응축기 (430·439·304)</p>
+<p>  3. <b>실외기·칠러(Chiller)·밸브 부품</b></p>
+<ul>
+<li><b>핵심 동인</b>: ① 구리 가격 고공행진(LME 1만 달러대) → Cu 대체 경제성 ② 친환경 냉매 전환(고압) → 내압 우위 소재 필요 ③ 통상이슈(중국산 구리관 대체).</li>
+</ul>
+<h3>2. 핵심 기술 트렌드 (사람이 추적해야 할 종축)</h3>
+<ul>
+<li><b>냉매 규제 전환</b>: HFC(R410A, 고-GWP) → R32(중간 GWP) → <b>R290(프로판, 친환경이나 가연성·고압)</b>, R744(CO₂, 초고압).</li>
+<li>친환경·고압 냉매 확대 → <b>배관 내압 요구 상승</b> → STS 유리 (PossFD 파열압 408bar vs 구리관 216bar).</li>
+<li><b>무용접 조인트</b>(원터치/고주파) — 화재위험 차단, 동관 용접 대체.</li>
+<li>히트펌프(난방 전기화)·데이터센터 쿨링 → HVAC STS 수요 견인.</li>
+</ul>
+<h3>3. 글로벌 주요 플레이어</h3>
+<ul>
+<li><b>OEM(공조기)</b>: Daikin(일), Carrier(미), Trane(미), Mitsubishi Electric(일), Panasonic(일), LG·삼성(한), Gree·Midea(중), Rinnai(일), Unionaire(중동).</li>
+<li><b>냉매배관·조관·부품</b>: 모리공업(일), Wenge(중), Inoxpres(스페인), Fischer(독), Sanhua(중, 밸브), 대한스텐레스파이프(한).</li>
+<li><b>대체재(경쟁)</b>: 구리관(Cu) 제조사, 알루미늄 배관 — STS의 직접 경쟁 소재.</li>
+</ul>
+<h3>4. 정책·규제 (지역별)</h3>
+<ul>
+<li><b>EU</b>: F-gas Regulation — HFC 단계적 감축, 친환경 냉매 의무화.</li>
+<li><b>미국</b>: AIM Act — HFC 생산·소비 단계 감축.</li>
+<li><b>글로벌</b>: 키갈리 개정의정서(몬트리올) — HFC 감축 국제 합의.</li>
+<li>→ 규제가 고압·친환경 냉매로 밀어붙일수록 STS 배관 수요 명분 강화.</li>
+</ul>
+<h3>5. 수요 · CAPEX 동향</h3>
+<ul>
+<li>데이터센터 수냉식 쿨링, 히트펌프 보급(유럽 난방 전기화), 신흥국 에어컨 보급률 상승.</li>
+<li>구리 가격 상승 지속 시 Cu→STS 전환 가속 (공개 뉴스 ④와 연동해 모니터링).</li>
+</ul>
+<h3>5-1. 최근 동향 (🌐 수집 agent · 웹 다중검증, 2026-06-02)</h3>
+<blockquote>외부 공개정보를 다각도 웹검색 + claim별 3표 교차검증으로 수집(검증 10건·반박폐기 5건). AI 수집·미검증 포함 — 영업 전 핵심 수치 재확인 권장.</blockquote>
+<h4>규제 = STS 순풍의 핵심 동력</h4>
+<ul>
+<li><b>EU F-gas 신규정 (EU)2024/573</b> (2024.2.20 관보, 기존 517/2014 폐지): HFC 할당량 &#x27;23년 82.3Mt → &#x27;25–26년 <b>42.9Mt(-48%)</b> → &#x27;30–32년 9.0Mt 단계 감축. (EUR-Lex·Danfoss·Compliance&amp;Risks, 신뢰 高)</li>
+<li><b>기기별 GWP 금지</b>: 모노블록 히트펌프·소형 AC(≤12kW) &#x27;27년 GWP≥150 금지, &#x27;32년 F-gas 완전퇴출 → R32(GWP~675)에서 <b>R290(프로판, GWP~3)·R744(CO₂)</b>로 강제 이동. (EHPA·EU집행위, 신뢰 高)</li>
+<li><b>미국</b>: Carrier가 R-410A → <b>R-454B</b>(Puron Advance, GWP 466) 전환(&#x27;24.3 주문개시). 단 <b>EPA가 &#x27;26.5월 GWP≥700 기기 설치마감(&#x27;26.1.1)을 폐지</b> → 미국 전환 압력·타임라인 완화(변동성↑). (Carrier·EPA·H&amp;K, 신뢰 高)</li>
+<li><b>키갈리 의정서</b>: 선진국 &#x27;36년 HFC -85%, 중국 등 개도국 &#x27;45년까지 감축. (조약텍스트, 신뢰 高)</li>
+</ul>
+<h4>STS 수요 직접 영향</h4>
+<ul>
+<li><b>R744(CO₂) 초고압</b>: 가스쿨러 ~120bar·증발 45–60bar 운전 → 고압부 <b>STS 배관 요구</b>. R744 전용 STS 프레스피팅 상용화(OLAB 120bar, SANHA RefHP) → CO₂ 냉매 확산이 STS 배관·피팅 수요 견인. (Purdue IRACC, 신뢰 高·방향성 추론)</li>
+<li>⚖️ <b>균형 시각(과신 경계)</b>: 구리관 진영도 가공경화로 고압 대응 중이고, 데이터센터 냉각 일부는 폴리머 검토 → 고압부는 STS 우위이나 <b>&quot;STS 일방 승리&quot; 서사는 경계</b>(교차검증서 일방우위 주장 5건 반박됨).</li>
+</ul>
+<h4>수요 동인 — 단기 둔화 ↔ 구조적 성장</h4>
+<ul>
+<li><b>유럽 히트펌프 &#x27;24년 -22%</b>(231만대, 독일 -48%·체코 -64%) → 단기 둔화. 누적 2,550만대(가구 12%). &#x27;30년 6,000만 목표 대비 <b>1,500만대(25%) 부족</b> 전망. (EHPA Market Report 2025, 신뢰 高)</li>
+<li><b>R290 프로판 급부상</b>: &#x27;24년 EU 신규 주거 히트펌프 인증의 <b>38%</b>(&#x27;21년 3%→), &#x27;25년 모노블록 50% 추정. (EU JRC, 신뢰 高)</li>
+<li><b>OEM CAPEX</b>: Mitsubishi Electric 미국 켄터키 가변속 컴프레서 공장 <b>$143.5M</b>(&#x27;27.10 가동, 연 100만대). (MELCO·켄터키주, 신뢰 高)</li>
+</ul>
+<h4>⚠️ 미확인 = 다음 수집 과제 (수집 agent가 못 채운 것)</h4>
+<ul>
+<li>구리(LME) 가격 &#x27;24–26 추이 · STS 대비 경제성 손익분기 (영업 핵심인데 미검증)</li>
+<li>HVAC용 STS(열교환기·배관) 시장 규모 · CAGR · 2030 전망</li>
+<li>Daikin·LG·삼성·Gree·Midea·파나소닉 등 <b>아시아 OEM</b> 냉매 전환 로드맵·CAPEX (검증된 OEM은 Carrier·MELCO뿐)</li>
+<li>데이터센터 수냉식 STS vs 폴리머 분담 (정량)</li>
+</ul>
+<h3>6. 당사 STS 솔루션 매핑</h3>
+<ul>
+<li><b>PossFD</b>: 냉매배관 구리관 대체 — HVAC의 핵심 카드. (상세 → `강종_DB/강종_PossFD.md`)</li>
+<li><b>304 / 304J1</b>: 범용 배관·부품. <b>430 / 439</b>: 열교환기·외장. <b>316 / 316L</b>: 고내식 부위.</li>
+<li>강종 상세·물성은 강종_DB 연동(리포트 ◆ 강종 특성 섹션).</li>
+</ul></div><div class="indbox indconf"><h3>7. 당사 주목 포인트 (🔒 내부 메모 근거 · 기밀 — 공유 시 자동 제외)</h3>
+<ul>
+<li><b>활발 시장</b>: 멕시코(Carrier 등 12건) · 일본(파나소닉·린나이·모리공업 10건) · 중국(Wenge·Sanhua 6건) · 한국.</li>
+<li><b>도달 단계</b>: Trial·협의 다수, 양산·계약 일부 → <b>개발 중기 단계</b>(상용화 직전 안건 다수).</li>
+<li><b>반복 이슈</b>: ① 구리관 대체 경제성(구리 가격 변동성) ② 무용접 조인트 채용 ③ 친환경 냉매 고압 대응 ④ 소재 인증(ISO14993 CCT 등) ⑤ 중국산 저가 구리관과의 통상 구도.</li>
+<li><b>시너지 포인트</b>: PossFD가 79회 언급될 만큼 국가 횡단 공통 안건 → <b>한 국가 개발 경험을 타 국가로 복제</b>할 여지 큼(리포트 ⑤ 스레드 참조).</li>
+<li>※ 구체 고객·진행 현황은 리포트 ① 현황·⑤ 국가별 스레드에서 실시간 확인.</li>
+</ul></div><h2>◆ 강종 특성 (기술 참고)</h2><div class="tail">강종_DB 자료(POSCO 기술자료 기반 · AI 정리, <b>물성치 미검증</b>) · 공개 기술정보. 미팅 시 강종 셀링 포인트 참고용.</div><details open class="gradebox"><summary class="gradesum">📋 PossFD 특성 <span class="tail" style="font-weight:400">· 강종_PossFD.md</span></summary><div class="gradebody"><h3>PossFD 강종 특성 (고연질 STS, 구리관 대체)</h3>
+<blockquote>출처: POSCO `4. STS 新강종소개.pdf`. <b>AI 정리·미검증</b>. *FD = Flexibility &amp; Drawability*.</blockquote>
+<blockquote>실데이터(미팅메모)에 가장 빈번한 신강종 — HVAC 냉매배관 구리관 대체의 핵심.</blockquote>
+<h3>분류·조성</h3>
+<ul>
+<li>계열: <b>오스테나이트계</b> (Cu 첨가 고연질), JIS/KS <b>304J1</b> 계열</li>
+<li>조성(wt%): C &lt;0.04, Si ≤1.0, Mn ≤1.5, <b>Cr 16~18, Ni 7.0~9.0, Cu 2.5~3.0</b></li>
+<li>비교: 304(18~20Cr-8~10.5Ni, Cu無) / 304J1(15~18Cr-6~9Ni-Cu1~3)</li>
+</ul>
+<h3>핵심 물성 (vs 304/304J1)</h3>
+<table class="gradetbl"><tr><th>강종</th><th>YS(MPa)</th><th>TS(MPa)</th><th>EL(%)</th><th>Hv</th></tr>
+<tr><td><b>PossFD</b></td><td><b>200</b></td><td>502</td><td><b>60</b></td><td><b>131</b></td></tr>
+<tr><td>304</td><td>280</td><td>680</td><td>58</td><td>167</td></tr>
+<tr><td>304J1</td><td>260</td><td>600</td><td>59</td><td>136</td></tr>
+</table>
+<ul>
+<li><b>① 저(低) 항복강도(200)</b>: 300계 중 가장 낮음 → <b>연질 특성</b></li>
+<li><b>② 저 가공경화</b>: 변형량 큰 형상 가공 가능 → <b>중간열처리 공정 생략 가능</b>(원가↓)</li>
+<li>304 대비 <b>가공유기 마르텐사이트 저감</b> → 가공 후 자성 완화, 시효균열 저항성↑</li>
+</ul>
+<h3>핵심 성능 (냉매배관 적용 근거)</h3>
+<ul>
+<li><b>내식성</b>: NaCl 복합부식(ISO14993 CCT 42일) — <b>구리(Cu)관 동등</b> 수준 (부식깊이 Al &gt;&gt; Cu ≈ STS)</li>
+<li><b>내압</b>: STS 배관 파열압력 <b>408 bar</b> vs 구리관 216 bar (한국기계전자시험연구원). 냉매가스 내압(40~50bar) 충분</li>
+<li><b>연질성</b>: Bending 시 주름·꺾임 없음, 진원도 85%↑</li>
+<li><b>가격</b>: 구리관 대비 큰 원가절감 (메모: 구리 U$11,000/톤 vs PossFD U$3,500/톤 수준 언급)</li>
+</ul>
+<h3>대표 용도</h3>
+<ul>
+<li><b>에어컨 냉매배관</b>(구리관 대체) — Chiller·실외기, 무용접 조인트 결합</li>
+<li>HVAC 열교환기, 건물 냉매연결관</li>
+<li>명품 싱크(Premium sink, 20R 고성형), 4301J1 대체</li>
+</ul>
+<h3>적용 사례 (PDF)</h3>
+<ul>
+<li>포스코 광양 직원생활관 시범시공(&#x27;20.10~&#x27;21.12, POSCO+LG전자): 무용접 원터치 방식(화재위험 차단), 누설검사 39kg/㎠ 6개월 누기 없음</li>
+<li>무용접 조인트 핵심기술 3종: 동관대체 고연질강 + 코일배관 + 무용접 조인트</li>
+</ul>
+<h3>영업 포인트</h3>
+<ul>
+<li><b>강점</b>: 구리관 대비 <b>40% 단가↓</b>(메모) + 내압 우위 + 무용접(화재 차단) → HVAC 구리관 대체 강력. 연질로 중간열처리 생략(고객 공정 절감).</li>
+<li><b>시장 동인</b>: 구리 가격 상승, 친환경 냉매(고압), 통상이슈(중국산 구리관 대체) → 메모상 중국 Wenge(양산·GB/T 국가표준)·멕시코 Carrier(현지조관) 등 횡단 진행.</li>
+<li><b>주의</b>: 표기 흔들림 <b>POSSFD(45건) ≫ PosFD(4건)</b> — DB 검색 시 변형 함께. 신규 추진 시 소재 인증(냉매 표준·고객 테스트) 필수.</li>
+<li><b>연계</b>: `--ind HVAC냉매 --grade PossFD` / 시장개발 사례는 가이드_POSSFD.md.</li>
+</ul></div></details><h2>③ 용도(application)별 개발 맥락</h2><div class="appcard"><span class="h">HVAC·냉매(구리관 대체)</span> <span class="m">· 메모 10건 · 지역 사업실, 유럽미주</span><div class="m">고객: (주)대한스텐레스파이프, Carrier Mexico, DAE HAN MEXICO S.A. DE C.V., DAEHAN SPECIAL STEEL, HANGZHOU WENGE TECHNOLOGY, INOXPRES SA, NUNGWON METAL IND. CO., LTD., SAMUEL SON AND CO LIMITED, 에버테크코퍼레이션</div></div><div class="appcard"><span class="h">미분류</span> <span class="m">· 메모 1건 · 지역 유럽미주</span><div class="m">고객: DAE HAN MEXICO S.A. DE C.V.</div></div><h2>④ 시황 · 관련 뉴스</h2><div class="tail">주제 관련 뉴스만 표시 · 출처: STS-Automation 로컬 수집(공개정보) · 외부 전송 없음</div><div class="news"><div class="news-top"><span class="date">2026-05-28</span><span class="imp imp-m">중</span><span class="src">철강금속신문 · 한국</span><span class="news-ttl"><a href="https://www.snmnews.com/news/articleView.html?idxno=569983" target="_blank">포스코, 세계STS협회 어워드 &#x27;3관왕&#x27;…에어컨 냉매배관 STS 대체 성과 인정</a></span></div><div class="news-imp">시사점: 포스코가 소재 공급을 넘어 **신수요 응용(냉매배관)·표준화·고객사 협력**까지 입증했다. 동관 대체 STS 시장(에어컨 HVAC)의 사업화 사례는 신수요 개발 모델로 참고가치가 높다. AI·DX/AX가 STS 기술 경쟁의 핵심으로 부상.</div></div><div class="news"><div class="news-top"><span class="date">2026-05-25</span><span class="imp imp-l">하</span><span class="src">Mysteel · 중국</span><span class="news-ttl"><a href="https://bxg.mysteel.com/a/26052515/6D7E4E740B0C9231.html" target="_blank">장쑤 톈위금속, 이싱 신기지 가동…STS 용접관 16개 라인</a></span></div><div class="news-imp">시사점: 중국 STS 용접관(열교환관 포함) 생산능력 확장은 다운스트림 가공품 공급 증가 신호다. HVAC·열교환 등 응용 분야 수요와 연계해 참고한다.</div></div><h2>⑤ 고객 · 지역별 개발 스레드 (펼치면 원문)</h2><div class="tail">유사 개발 사례 모음. 용도 → 고객 순, 각 고객은 시간순(과거→현재). 최근 메모는 펼친 상태.</div><h3>▣ HVAC·냉매(구리관 대체)</h3><div class="custh" id="c_3138a8af">NUNGWON METAL IND. CO., LTD.<span class="region">사업실</span><span class="ctrytag">한국</span> <span class="tail">· 1건</span></div><details open><summary><span class="date">2026-05-11</span><span class="stage">계약</span><span class="who">김호준</span><span class="ttl">PossFD적용 에어컨 일체형연결관 프로모션 (능원금속공업)</span><div class="hit">🔎 PossFD적용 에어컨 일체형연결관 프로모션 (능원금속공업) 능원금속공업 (동관생산: 연 50천톤 CAPA)은 자회사 SMI (HVAC용</div></summary><div class="cbody">능원금속공업 (동관생산: 연 50천톤 CAPA)은 자회사 SMI (HVAC용 부품생산)을 통해 구리소재 일체형 연결관을 생산하고 있음. 구리 소재가격 급등 상황하 국내 삼성과 LG도 대체소재를 사용한 연결관 개발을 동업체와 추진 중에 있는 상황에서 포스코에서 개발된 PossFD를 적용한 일체형 연결관 개발 및 프로모션에 동참 의사 확인. 수출용 보온재관련 ArmaFlex Ultima는 한국 Armacell에서 공급하고 있지 않는 SPEC이기 때문에 수출용 보온재 소싱에 대한 추가적인 연구가 필요함. 현재 가정 및 상업용 건물에 주력으로 사용되는 구리 일체형 연결관 가정 및 저가형 AC용 연결관에 알루미늄 소재 채택 중 (상세내용 유첨자료 참조)<div class="fup">↳ f/up: PossFD관련 강재특성 정보 및 능원금속공업의 일체형 연결관 생산관련 노하우에 대한 상호 비밀유지계약서 작성 (5월 중) 능원금속공업 공장방문 및 보온재 슈팅공정 확인 (5월 28일 예정) Armacell-한국 공급가능한 일체형 연결관 보온재 SPEC 확인 미팅 (5월 13일 예정)</div></div></details><div class="custh" id="c_02150b6d">에버테크코퍼레이션<span class="region">사업실</span><span class="ctrytag">스페인</span> <span class="tail">· 1건</span></div><details><summary><span class="date">2026-04-15</span><span class="stage">검토</span><span class="who">김호준</span><span class="ttl">에버테크 PossFD 조인트 현황</span><div class="hit">🔎 에버테크 PossFD 조인트 현황 현황 PossFD 조인트를 개발완료하였으나, 아직 에어컨배관용 수요가 발생하지 않아서 Water Pipe 배관</div></summary><div class="cbody">현황 PossFD 조인트를 개발완료하였으나, 아직 에어컨배관용 수요가 발생하지 않아서 Water Pipe 배관 조인트 용도로 대만에 일부 판매 중이며, 23년에 당사와 함께 개발하였으나 고객사 관심 부족으로 중단된 유럽 에어컨 설치 유통 (예시 스페인 Inoxpress)향 개발을 함께 할 것으로 희망하고 있음. 스테인리스 에어컨 배관관련 국내 건설사 적용 추진 상황 구리가격 상승으로 인한 비용 증가로 에어컨 배관에 스테인리스 적용을 건설사에서 요청하고 있으나, 에어컨사인 LG와 삼성에서 구체적으로 스테인리스 배관사용을 관련 대리점에 승인하고 있지 않고 있는 상황에서 LG에서 먼저 26년 상반기 내로 스테인리스 배관 사용에 대한 지침을 대리점에 전달할 것으로 전망함. 관련하여 포스코 동반 한신공영 설명회 (4/17)에 참석하여 건설사 VOC 참조예정 (김호준 리더 참석) 주요 국내 AC 제조사인 LG와 삼섬의 스테인리스 배관 적용 분위기 스테인리스배관 적용을 내부적으로 검토하고 있으며, 기존 저가형 알루미늄 배관을 이미 도입한 상황에서 알루미늄 대비 높은 내구성과 구리대비 가격경쟁력을 확보한 스테인리스 소재를 채택할 것으로 전망함. 다만 기존 동관업계의 강한 반발과 시공설치 업체의 스테인리스소재에 대한 인식저하로 적용시점과 스테인리스 수요증가시점에 대한 불확실성 상존 해외 시장 진출 시점 국내 주요 업체인 LG와 삼성에서 스테인리스 소재를 채택하고 레퍼런스가 확보되는 시점에 해외 Carrier와 Daikin 등 업체향 스테인리스 판촉이 가능할 것으로 전망<div class="fup">↳ f/up: 1.LG전자 에어컨 부품업체 방문을 통해 에어컨 부품관련 스테인리스 적용 상황 현장 확인 필요 2 국내 건설사 VOC 확인 3 유럽 HVAC 유통항 PossFD 적용 배관 Needs 재확인 필요</div></div></details><div class="custh" id="c_f3128ece">INOXPRES SA<span class="region">유럽미주</span><span class="ctrytag">중국</span> <span class="tail">· 1건</span></div><details><summary><span class="date">2026-01-16</span><span class="stage">Trial</span><span class="who">조재용</span><span class="ttl">스페인 이태리 HVAC용 연결관 판매</span><div class="hit">🔎 스페인 이태리 HVAC용 연결관 판매 1 배경: `23년 Inoxpress향 PossFD STS냉연 직접 공급을 추진하였으나, 유통업체 특성상 현장에 바로 적용할 수 있는 6M 연결관을 완제품 형태로 공급이 필요한</div></summary><div class="cbody">1 배경: `23년 Inoxpress향 PossFD STS냉연 직접 공급을 추진하였으나, 유통업체 특성상 현장에 바로 적용할 수 있는 6M 연결관을 완제품 형태로 공급이 필요한 상황으로 추가 진전 없이 중단한 바 있음 For insulations usually fireproof M1 EN 13501-1 polyethylene foam insulation and polyolefin copolymer coating UV resistant coating its being used, 2 신규 추진사항: 25년 하반기부터 포스코 소재로 중국 Wenge에서 생산 한 실외기 연결용 6M 연결관을 직접 공급하는 방식으로 전환하여 추진 【 PossFD HVAC 실외기 연결관 부품 수출 】 유첨: Wenge PPT, Inoxpress 브로슈어 참조 ﻿<div class="fup">↳ f/up: 마드리드 지사: Inoxpress을 통해 TEST 물량 협의 필요</div></div></details><div class="custh" id="c_37a730a6">HANGZHOU WENGE TECHNOLOGY<span class="region">유럽미주</span><span class="ctrytag">중국</span> <span class="tail">· 2건</span></div><details><summary><span class="date">2025-08-22</span><span class="stage">Trial</span><span class="who">조재용</span><span class="ttl">중국 Wenge향 PossFD HVAC용 연결관 TEST 결과 및 진행사항</span><div class="hit">🔎 중국 Wenge향 PossFD HVAC용 연결관 TEST 결과 및 진행사항 면담 인원: Wenge Liu 총경리, QPSS 김문파 리더, 포스코 이진호 그</div></summary><div class="cbody">면담 인원: Wenge Liu 총경리, QPSS 김문파 리더, 포스코 이진호 그룹장, 권영주 팀장, 김도훈 차장 당사 김호준 그룹장, 이대우 차장, 홍명의 대리 PossFD 에어컨 연결관 테스트 결과: 중국 TCL 에어컨 실증, 기밀설, 내압성, 시험결과 합격 CO2 냉매 Heat Pump 장치표준 스테인리스 파이프 적용 GB/T 45650-2025에서 스테인리스 냉매 파이프가 장치 표준으로 적용되어 중국내 기존 구리 냉매관을 대체한 스테인리스 파이프 수요 증대 전망 국가표준적용으로 인해 `26년 구리관 수요 연 1500천톤 중 150천톤 (10%)을 스테인리스 파이프로 전환 가능 (Wenge 의견) PossFD 용도: 에어컨 냉매용 파이프, HVAC 부품 (증발기, 압축기 배관, 등), 건축 Water Pipe 중국 PossFD 사용 전망 20천톤 이상 가능할 것으로 전망 ( 중국 덕성보강의 10% Ni 연질 STS 제품과 경쟁 중이며 TISCO 등 주요 로컬 Mill에서도 동일 제품 생산할 것으로 전망, 경쟁 예상되나 중국내 단기적으로 시장 선점 가능 ) 향후 중국내 PossFD 적용을 확대하는 동시에 중국 로컬 Mill 경쟁 대비하여 중국산 진입이 어려운 멕시코 지역 HVAC향 PossFD 적용 확대 추진 (대상: Carrier 멕시코 9월 출장 진행)</div></details><details><summary><span class="date">2025-12-11</span><span class="stage">양산</span><span class="who">조재용</span><span class="ttl">중국 Wenge향 PossFD 양산공급 결과 공유 및 26년 공급협의</span><div class="hit">🔎 중국 Wenge향 PossFD 양산공급 결과 공유 및 26년 공급협의 중국 HVAC용 스테인리스 표준화 (국가표준이라서 특성 Mill 제품으로 표준은 만들</div></summary><div class="cbody">중국 HVAC용 스테인리스 표준화 (국가표준이라서 특성 Mill 제품으로 표준은 만들 수 없음) 포스코는 양산으로 원가를 분석하였으나, 구리가격 상승과 기타 생산 원가 상승으로 PossFD 원가 US 70/톤 (500위안/톤) 상승​ Wenge는 1천톤 이상 구매시 U$ 200~300/톤 단가 인하를 요청 (FOB 기준 U$4000/톤 0.6T 기준) 당사의 중국내 W/H 운영 및 JIT 공급 서비스 필요​ ​ TEST 결과 상세자료 참조<div class="fup">↳ f/up: 1천톤 기준 PossFD 가격 인하 검토 2천톤 기준 PossFD 40%, 일반 304L 60% Mix 가격 인하 검토 중국내 여신 확보 및 W/H 운영 검토​</div></div></details><div class="custh" id="c_3a52243c">DAEHAN SPECIAL STEEL<span class="region">유럽미주</span><span class="ctrytag">멕시코</span> <span class="tail">· 1건</span></div><details><summary><span class="date">2025-11-19</span><span class="stage">Trial</span><span class="who">조재용</span><span class="ttl">멕시코 HVAC부품용 PossFD 연질 STS강관 테스트</span><div class="hit">🔎 멕시코 HVAC부품용 PossFD 연질 STS강관 테스트 소재 공급 사이즈 정보 순 외경 (mm) 두께 (mm) Coil폭 (mm) 필요길이 1 12.7 0.</div></summary><div class="cbody">소재 공급 사이즈 정보 순 외경 (mm) 두께 (mm) Coil폭 (mm) 필요길이 1 12.7 0.6 39.6 200m x 3pcs 2 15.88 0.6 50 200m x 3pcs 김성훈 대표와 조현철 이사도 11월 미국/멕시코 출장을 진행하였고, 기존 배기계가 축소되는 상황에서 HVAC용 다변화 Needs가 있고, Carrier 멕시코와 열교환기용 파이프 공급이 `26년 가능할 것으로 전망함. 당사와 협업하는 HVAC용 부품도 Carrier 멕시코와 비즈니스 개발관계를 활용하여 적극적으로 추진하고, 12파이의 소형강관 제작에 필요한 몰드 부품이 투자하여 테스트를 진행할 예정.<div class="fup">↳ f/up: 중소벤처 상생협력관련 대한특수강과 협업을 통한 멕시코 신규 시장 공동개발 추진</div></div></details><div class="custh" id="c_f3d8f4f6">Carrier Mexico<span class="region">사업실</span><span class="ctrytag">멕시코</span> <span class="tail">· 1건</span></div><details><summary><span class="date">2025-10-21</span><span class="stage">양산</span><span class="who">조용섭</span><span class="ttl">Carrier mx : 銅Pipe 대체 STS Biz 협의</span><div class="hit">🔎 지역 내 8개 생산설비 운영 중 - 주거용 HVAC 장비 또는 공조 관련 부품 생산하며, 북미 공급망의 중요한 축 2. PossFD 공급 협의 - 주요 부품의 50% 이상 중국산이나, 통상 이슈로 Supply Chain 전환 필요 - 기존 구리관 가격 상</div></summary><div class="cbody">○ 참석자:  캐리어 : Mr. Adolfo (PJT Engineer), Mr. Maximiliano (Engineer)  포스코인터내셔널 : 조용섭 실장, 멕시코법인 권영철 차장   ○ 주요 논의 사항 1. Carrier 현황 - HVAC(난방 · 환기 · 공조) 및 냉장·냉동(Cold Chain) 솔루션 전문 기업 (세계 최대 규모) - 멕시코 북부 뉴레온주 산타 카타리나 지역 내 8개 생산설비 운영 중 - 주거용 HVAC 장비 또는 공조 관련 부품 생산하며, 북미 공급망의 중요한 축   2. PossFD 공급 협의 - 주요 부품의 50% 이상 중국산이나, 통상 이슈로 Supply Chain 전환 필요  - 기존 구리관 가격 상승 및 친환경 냉매의 고압 필요에 따라 고연질 STS 적용 가능성 高  - 에어컨 냉매 파이프 구리관 대체재로 포스코 고연질 소재인 PossFD 설명 : 관심 확인 - 26년 소재 인증 추진 및 &#x27;27년 양산공급 추진<div class="fup">↳ f/up: - 국내업체 (대한STS) 협업 통한 멕시코 HVAC산업향 PossFD 강관 공급 추진  - 대한STS 활용 현지조관 및 소재인증 추진   - 대상 : Carrier 외 Daikin, Trane, Lennox   - 멕시코 현지 동관 생산량 연 50천톤 중 10% 5천톤을 고연질 STS로 대체 공급 가능 전망</div></div></details><div class="custh" id="c_ebf45fbd">DAE HAN MEXICO S.A. DE C.V.<span class="region">사업실</span><span class="ctrytag">멕시코</span> <span class="tail">· 1건</span></div><details><summary><span class="date">2025-10-20</span><span class="stage">양산</span><span class="who">조용섭</span><span class="ttl">대한멕시코향 구리관 대체 사업 제안</span><div class="hit">🔎 소재·부품단의 관세 이슈가 명확해질 경우, 수입산 사용에 대한 입장 가능 2. HVAC 업체향 銅 Pipe 대체 STS 소재(PossFD) 시장 개발 - 주요 대상: Carrier Mexico 등 HVAC 제조 및 부품업체 · PossFD(고연질 STS) 강종</div></summary><div class="cbody">○ 참석자: - 대한멕시코 : 서희 법인장, 전철규 구매부장 - 포스코 : 이경진 실장, 이재준 차장 - 포스코인터내셔널 : 조용섭 실장, 권영철 차장 ○ 주요 논의 사항 1.미국/멕시코 통상 이슈 관련 - (대한) 2025년 본격 시행 전으로, 현재 3분기까지는 정상적으로 사업 진행 중이며 4분기까지는 관세분담 형태로 공급 지속. - 2026년 이후 및 신규 프로젝트는 USMCA 조건을 만족하는 소재 사용 지침을 OEM 및 1차 벤더로부터 수령 중 (미국산은 한국 수입산 대비 약 50% 고가). - 자동차 외 HVAC 및 Stamping용 소재 다변화 추진 중이나, 통상문제없는 Local 소재 사용 요구 증가 - 소재·부품단의 관세 이슈가 명확해질 경우, 수입산 사용에 대한 입장 가능 2. HVAC 업체향 銅 Pipe 대체 STS 소재(PossFD) 시장 개발 - 주요 대상: Carrier Mexico 등 HVAC 제조 및 부품업체 · PossFD(고연질 STS) 강종 소개 및 현지 조관 후 부품사 공급 체계(Supply Chain) 협의 - 현지 조관업체인 대한멕시코(강관)와 협업하여 · 몬테레이 지역 Carrier 공장향 PossFD 현지 조관 및 부품사 납품 협의 - 미국 관세(50%) 극복 가능 · 기존 구리관 대비 약 40% 단가 절감 가능 : 부품 형태로 미국향 공급 가능 예상 (Cu: USD 11,000/톤 vs PossFD: USD 3,500/톤) - 몬테레이 지역 HVAC 시장 성장성 · 멕시코 주요 HVAC 제조업체: Carrier, Daikin, Trane, Lennox · 주요 부품의 50% 이상이 중국산 → 통상이슈로 인한 Supply chain 전환 요구 증가 · 구리관 가격 상승 및 친환경 냉매 고압 대응으로 고연질 STS 적용 가능성 확대 · Carrier향 홍보 결과, 구리관 대체 소재로서 고연질 STS에 대한 높은 관심 확인 · 멕시코 동관 연 5만톤 생산 중. 3. F/u : 현지 조관 추진 실행 방안 - 대한특수강 본사공장(경남 양산) 우선 활용하여 PossFD Coil 공급 및 테스트 추진 · 10월: PossFD 0.6t × 1000mm, 1.5톤 양산 공장 공급 · 11월: 12.7mm, 15.88mm 구경 시제품 생산 · 2026년 1분기: Carrier Mexico 소재 인증 및 HVAC 부품사향 프로모션 추진 예정<div class="fup">↳ f/up: 현지 조관 추진 실행 방안 - 대한특수강 본사공장(경남 양산) 우선 활용하여 PossFD Coil 공급 및 테스트 추진 · 10월: PossFD 0.6t × 1000mm, 1.5톤 양산 공장 공급 · 11월: 12.7mm, 15.88mm 구경 시제품 생산 · 2026년 1분기: Carrier Mexico 소재 인증 및 HVAC 부품사향 프로모션 추진 예정</div></div></details><div class="custh" id="c_8af5e666">SAMUEL SON AND CO LIMITED<span class="region">유럽미주</span><span class="ctrytag">멕시코</span> <span class="tail">· 1건</span></div><details><summary><span class="date">2025-09-24</span><span class="stage">Trial</span><span class="who">곽준영</span><span class="ttl">26년 RFQ 및 BIZ 현황 공유</span><div class="hit">🔎 안 요청 - ATI 에서 해당 강종을 미국 외 기업에 수출 해주지 않아 biz 확장 기회를 놓치고 있음 -&gt; PossFD 제안 하였으며 , 강종 상세 고객사 공유 예정 2) 멕시코 자동차 신규 PJT 향 304 연간 100 톤 INQ 수</div></summary><div class="cbody">[ 현황 ]   1) STS 조관사로  Automotive Biz 향 공급 위주 (GM)     Biz 포트폴리오 다변화를 위해 HVAC 향 공급 확대 하고 있음 (Carrier, Johnson Control)    Aerospace, Oil&amp;Gas 영역도 확대 노력 지속 .   2) 캐나다 , 멕시코 (TSM) 에 공장이 있고 , STS 100% 구매 하고 있음     ( 미국 공장 (Alabama) 는 탄소강 공장 )   3) 25 년 사용량 : 캐나다 1 만톤 , 멕시코 2 만톤   4) 제품 : 자동차  Fule line, HVAC 용 Tube   5)  사용 강종 : 304,316,321,2205(Duplex) STS  CR   6)  구매 국가 : 300 계 미국 100%, 321/2205: 미국 / 일본      * 수입산 구매 중인 321, 2205 에 대해서는 본사재 견적 희망   7) 구매 결정 : Neal Newman 이 결정하며 , Mark Nucci, Ashley 와는 별개의 조직임             Samuelson 본사는 주로 유통재에 대한 구매 결정한다고 함 ( 조관 물량은 별도 운영 )   [ F/u 사항 ]   1)  캐리어향 ATI 산  29-4C 대체 강종 제안 요청     - ATI 에서 해당 강종을 미국 외 기업에 수출 해주지 않아 biz 확장 기회를 놓치고 있음      -&gt; PossFD 제안 하였으며 , 강종 상세 고객사 공유 예정     2)  멕시코 자동차 신규 PJT 향 304 연간 100 톤 INQ 수취 完          3)  캐나다 2205 강 신규 PJT 연간 400 톤 INQ 수취 完     4)  자동차향  &#x27;26 년 중  running change 가능한 program 있을 것으로 추정 .        확인 시 trial 추진 가능 . 현재로서는 인증 추진 가능한 물량은 멕시코 1 개 PJT 만 있음</div></details><div class="custh" id="c_55ea63a7">(주)대한스텐레스파이프<span class="region">유럽미주</span><span class="ctrytag">멕시코</span> <span class="tail">· 1건</span></div><details><summary><span class="date">2025-08-11</span><span class="stage">Trial</span><span class="who">조재용</span><span class="ttl">대한스텐레스 본사방문 보고</span><div class="hit">🔎 (441. 439 소재, 연 600톤)을 당사 협업 예정 향후 당사가 개발 추진 중인 Guntner (열교환기) 향 PossFD 파이프 공급을 대한멕시코를 통해 공급 추진 3. 향후 추진 사항 1) 고객사 추천 가공센터 정보 구득 및 동 업체경</div></summary><div class="cbody">○ 주요 안건  1. 미국향 수출 (상반기) 감소와 중국계 배기계업체 진출현황 논의   * 주요 고객사는 미국/멕시코 소재 세종공업(기아차)과 Arvin Sango(Toyota), Hirotec (Mazda)이며 미국향 수출비중 높음 (70%)   1) 상반기 미국수출 감소 사유 및 하반기 전방     현기차의 `24년 하반기부터 미국내 완성차 재고 증대 (트럼프 집권 대비)로 인한 미국내 부품 수요 감소하였으나,     `25년 상반기 미국 25% 관세 부과로 인해 한국산 부품공급은 축소되었고, 멕시코 공장 생산 부품은 관세없이 공급 가능한 상황이며       9월부터 `24년 상반기 수준으로 회복 예정     2) 중국 배기계업체 멕시코 진출 (위협)     - 대련 진장 (멕시코 Saltillo) 공장 조관설비 도입 완료     - 소주 스다 (멕시코 Queretaro) 공장 건립 중     * 현재는 북미 완성차의 중국계 멕시코생산 부품의 채용이 어려운 상황이지만, 향후 5~10년 후 멕시코 배기계 부품시장 진입       및 M/S 증대 전망      3) 포스코산 연간수량 전망     - 연간협의 수량 14천톤 중 상반기 포스코산 6천톤으로 43% 이행 (당사 2.1천, 경쟁사 3.9천톤)     - 당사 경유 물량 증대를 위해 대한스테레스 멕시코 공장 5분 거리의 로컬 가공센터 활용 검토 (고객사 추천업체, 정보 업데이트 예정)      2. 배기계 및 향후 협력 사항     1) AL409. AL439 소재 채택 축소 전망     북미지역 완성차업체는 백청효과로 인해 AL코팅된 STS소재 채용을 많이 하였으나, 점차 고크롬 400계로 전환 되고 있음      AL409 -&gt; 436J1로 변경 (사유: AL코팅 소재 부품가공시 불량률 高, 비용 상승)     2) HVAC용 시장 진출 및 협업     고객사는 전기차 M/S 확대로 인해 배기계 축소/소멸 대비 신규 시장 진입을 준비하고 있으며,       Carrier (에어컨/공조기업체) 멕시코 공장향 HVAC용 부품 공급 (441. 439 소재, 연 600톤)을 당사 협업 예정     향후 당사가 개발 추진 중인 Guntner (열교환기) 향 PossFD 파이프 공급을 대한멕시코를 통해 공급 추진    3. 향후 추진 사항   1) 고객사 추천 가공센터 정보 구득 및 동 업체경유 대한멕시코 공급 검토 (추가로 Samuelson 멕시코 사용 검토)    2) 포스코 개발판매센션과 협업 하여 대한멕시코활용 PossFD 적용 미국/멕시코 Carrier향 공급 추진      - Carrier향 441/439 강종 이외 446 공급가능 여부 확인, PossFD 적용 제안     - Guntner향 Cu파이프 대체 PossFD 파이프 (대한멕시코 조관) Test 추진   3) 동반 출장 추진: 9/10월 중 대한스텐레스 김성훈대표 동반 배기계 및 HVAC용 시장 개발 (Carrier, Guntner) 출장 예정<div class="fup">↳ f/up: 1) 고객사 추천 가공센터 정보 구득 및 동 업체경유 대한멕시코 공급 검토 (추가로 Samuelson 멕시코 사용 검토)  2) 포스코 개발판매센션과 협업 하여 대한멕시코활용 PossFD 적용 미국/멕시코 Carrier향 공급 추진      - Carrier향 441/439 강종 이외 446 공급가능 여부 확인, PossFD 적용 제안     - Guntner향 Cu파이프 대체 PossFD 파이프 (대한멕시코 조관) Test 추진 3) 동반 출장 추진: 9/10월 중 대한스텐레스 김성훈대표 동반 배기계 및 HVAC용 시장 개발 (Carrier, Guntner) 출장 예정</div></div></details><h3>▣ 미분류</h3><div class="custh" id="c_ebf45fbd">DAE HAN MEXICO S.A. DE C.V.<span class="region">유럽미주</span><span class="ctrytag">멕시코</span> <span class="tail">· 1건</span></div><details><summary><span class="date">2025-10-01</span><span class="stage">Trial</span><span class="who">조재용</span><span class="ttl">대한멕시코 PossFD 생산관련 협의</span><div class="hit">🔎 대한멕시코 PossFD 생산관련 협의 Ÿ PossFD 소개 . Carrier의 Mr. Adolfo과 대한멕시코 전철규 부장, 김진원 과장에</div></summary><div class="cbody">Ÿ     PossFD  소개 . Carrier의 Mr. Adolfo과 대한멕시코 전철규 부장, 김진원 과장에게 강종소개 및 현재 Applicaiton을 소개 복귀 후 포스코와 외부 공유가능한 자료로 전환하여 자료 공유 예정 . Ÿ     Carrier는 부품형태로 동 ( 구리 ) 관을   사용하고   있으며 , 해당   부품을   생산하는   업체와 PossFD 홍보 후 인증작업을 진행할 필요 있음 대한멕시코에서 OD 12인치 구경 파이프를 생산할 수 없는 상황이며, 시제품은 한국 대한스텐 본사에서 먼저 생산 후 프로모션 진행하고, 추후 멕시코에 소구경 조관라인 설치 예정 Ÿ     Mr. Adolfo 가  raw material sourcing  관련   담당자   연락처를   공유 : Ms. Denisse Villarreal  à   denissekristel.villarreal@carrier.com<div class="fup">↳ f/up: 멕시코 몬테레이 지역 현지조관 Supply Chain 구축 (철강가공-조관-부품사 공급) Carrier향 HVAC 부품이외 열교환기용 소재 공급 동시 추진 필요</div></div></details></div></body></html>
